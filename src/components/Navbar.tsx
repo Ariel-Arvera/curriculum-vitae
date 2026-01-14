@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { navLinks, personalInfo } from "@/data/cv";
 
@@ -9,15 +10,20 @@ interface NavbarProps {
   onToggleTheme: () => void;
 }
 
-export default function Navbar({ activeSection, onNavigate, isDark, onToggleTheme }: NavbarProps) {
+export default function Navbar({
+  activeSection,
+  onNavigate,
+  isDark,
+  onToggleTheme,
+}: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -28,31 +34,40 @@ export default function Navbar({ activeSection, onNavigate, isDark, onToggleThem
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 h-[var(--nav-height)] bg-nav-bg border-b transition-shadow duration-200 ${
-          scrolled ? "shadow-sm border-nav-border" : "border-transparent"
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={`fixed top-0 left-0 right-0 z-50 h-[var(--nav-height)] transition-all duration-300 ${
+          scrolled
+            ? "bg-[hsl(var(--nav-bg))] backdrop-blur-xl border-b border-[hsl(var(--nav-border))] shadow-sm"
+            : "bg-transparent"
         }`}
       >
         <div className="container h-full flex items-center justify-between">
           {/* Brand */}
-          <a
+          <motion.a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick("home");
             }}
             className="flex flex-col hover:opacity-80 transition-opacity"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <span className="font-bold text-foreground">{personalInfo.name}</span>
-            <span className="text-xs text-muted-foreground">
-              {personalInfo.title} • {personalInfo.location}
+            <span className="font-bold text-foreground text-lg">
+              {personalInfo.name}
             </span>
-          </a>
+            <span className="text-xs text-muted-foreground hidden sm:block">
+              {personalInfo.title}
+            </span>
+          </motion.a>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={(e) => {
@@ -60,64 +75,125 @@ export default function Navbar({ activeSection, onNavigate, isDark, onToggleThem
                   handleNavClick(link.id);
                 }}
                 className={`nav-link ${activeSection === link.id ? "active" : ""}`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
           </div>
 
           {/* Right side buttons */}
           <div className="flex items-center gap-2">
+            {/* Theme toggle */}
+            <motion.button
+              type="button"
+              onClick={onToggleTheme}
+              className="btn-icon"
+              aria-label="Toggle theme"
+              whileHover={{ scale: 1.1, rotate: 15 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <AnimatePresence mode="wait">
+                {isDark ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Sun size={20} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Moon size={20} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+
             {/* Mobile menu button */}
-            <button
+            <motion.button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted transition-colors"
+              className="md:hidden btn-icon"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobileMenu"
               aria-label="Toggle menu"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
-              <span>Menu</span>
-            </button>
-
-            {/* Theme toggle */}
-            <button
-              type="button"
-              onClick={onToggleTheme}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted transition-colors"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
-              <span className="hidden sm:inline">Theme</span>
-            </button>
+              <AnimatePresence mode="wait">
+                {mobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X size={20} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu size={20} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Mobile Menu */}
-      <div
-        id="mobileMenu"
-        className={`mobile-menu ${mobileMenuOpen ? "open" : "closed"}`}
-        role="navigation"
-        aria-label="Mobile navigation"
-      >
-        <div className="container py-4 flex flex-col gap-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick(link.id);
-              }}
-              className={`nav-link text-center py-3 ${activeSection === link.id ? "active" : ""}`}
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-      </div>
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            id="mobileMenu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="mobile-menu open"
+            role="navigation"
+            aria-label="Mobile navigation"
+          >
+            <div className="container py-4 flex flex-col gap-1">
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.id);
+                  }}
+                  className={`nav-link text-center py-3 ${
+                    activeSection === link.id ? "active" : ""
+                  }`}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
