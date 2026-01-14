@@ -2,95 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Hassan Abdallah Portfolio - Design System
+   All colors MUST be HSL.
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Main accent - Teal/Turquoise */
+    --accent: 168 76% 36%;
+    --accent-light: 168 76% 94%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Background with slight teal tint */
+    --background: 168 30% 96%;
+    --foreground: 220 20% 20%;
 
+    /* Cards */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 20% 20%;
+    --card-shadow: 0 4px 24px -4px hsl(168 30% 70% / 0.25);
 
+    /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 20% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary = Accent */
+    --primary: 168 76% 36%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary */
+    --secondary: 168 20% 92%;
+    --secondary-foreground: 220 20% 20%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted */
+    --muted: 168 10% 90%;
+    --muted-foreground: 220 10% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent variant */
+    --accent-bg: 168 76% 94%;
+    --accent-foreground: 168 76% 30%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Border & Input */
+    --border: 168 20% 88%;
+    --input: 168 20% 88%;
+    --ring: 168 76% 36%;
 
-    --radius: 0.5rem;
+    /* Radius */
+    --radius: 0.75rem;
 
+    /* Navbar */
+    --nav-height: 64px;
+    --nav-bg: 0 0% 100%;
+    --nav-border: 168 20% 90%;
+
+    /* Pills/Badges */
+    --pill-bg: 168 30% 92%;
+    --pill-text: 168 50% 30%;
+
+    /* Sidebar (if needed) */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-primary: 168 76% 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 168 10% 95%;
+    --sidebar-accent-foreground: 220 20% 20%;
+    --sidebar-border: 168 20% 90%;
+    --sidebar-ring: 168 76% 36%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --accent: 168 76% 45%;
+    --accent-light: 168 50% 15%;
+    --accent-foreground: 0 0% 100%;
+    
+    --background: 220 25% 10%;
+    --foreground: 0 0% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 25% 14%;
+    --card-foreground: 0 0% 95%;
+    --card-shadow: 0 4px 24px -4px hsl(220 30% 5% / 0.5);
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 25% 14%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 168 76% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 220 20% 20%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent-bg: 168 50% 15%;
+    --accent-foreground: 168 76% 60%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 168 76% 45%;
+
+    --nav-bg: 220 25% 12%;
+    --nav-border: 220 20% 18%;
+
+    --pill-bg: 220 20% 20%;
+    --pill-text: 168 50% 60%;
+
+    --sidebar-background: 220 25% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 168 76% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 220 20% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 20% 18%;
+    --sidebar-ring: 168 76% 45%;
   }
 }
 
@@ -99,7 +132,178 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height);
   }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  h3 {
+    @apply text-lg font-semibold;
+  }
+}
+
+@layer components {
+  /* Card component */
+  .cv-card {
+    @apply bg-card text-card-foreground rounded-xl p-6 md:p-8;
+    box-shadow: var(--card-shadow);
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-medium text-sm
+           bg-primary text-primary-foreground
+           hover:opacity-90 transition-opacity
+           focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-medium text-sm
+           bg-secondary text-secondary-foreground border border-border
+           hover:bg-muted transition-colors
+           focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  /* Pill/Badge */
+  .pill {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-medium
+           bg-[hsl(var(--pill-bg))] text-[hsl(var(--pill-text))];
+  }
+
+  /* Chip (like email, phone chips) */
+  .chip {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm
+           bg-secondary border border-border;
+  }
+
+  .chip a {
+    @apply text-primary hover:underline;
+  }
+
+  .chip .copy-btn {
+    @apply px-2 py-0.5 text-xs rounded bg-muted hover:bg-accent-bg 
+           text-muted-foreground hover:text-primary transition-colors cursor-pointer;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+           bg-accent-bg text-primary border border-primary/20;
+  }
+
+  /* Topic card */
+  .topic-card {
+    @apply block p-4 rounded-lg border-2 border-border bg-card
+           hover:border-primary hover:shadow-md transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-ring;
+  }
+
+  .topic-card-title {
+    @apply font-semibold text-foreground;
+  }
+
+  .topic-card-desc {
+    @apply text-sm text-primary mt-0.5;
+  }
+
+  /* Timeline card */
+  .timeline-card {
+    @apply p-4 rounded-lg border border-border bg-card hover:shadow-sm transition-shadow;
+  }
+
+  .timeline-title {
+    @apply font-semibold text-foreground;
+  }
+
+  .timeline-date {
+    @apply text-sm text-muted-foreground whitespace-nowrap;
+  }
+
+  .timeline-text {
+    @apply text-sm text-muted-foreground mt-2;
+  }
+
+  /* Input */
+  .cv-input {
+    @apply w-full px-4 py-2.5 rounded-lg border border-input bg-background
+           text-foreground placeholder:text-muted-foreground
+           focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary;
+  }
+
+  /* Nav link */
+  .nav-link {
+    @apply px-3 py-1.5 rounded-lg text-sm font-medium text-muted-foreground
+           hover:text-foreground hover:bg-muted transition-colors;
+  }
+
+  .nav-link.active {
+    @apply bg-secondary text-foreground border border-border;
+  }
+
+  /* Horizontal rule */
+  .cv-hr {
+    @apply my-6 border-t border-border;
+  }
+
+  /* Muted text */
+  .text-muted {
+    @apply text-muted-foreground;
+  }
+
+  /* Profile image */
+  .profile-img {
+    @apply w-24 h-24 md:w-28 md:h-28 rounded-full object-cover border-4 border-primary/20
+           hover:border-primary/40 transition-colors cursor-pointer;
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    @apply fixed inset-x-0 top-[var(--nav-height)] bg-card border-b border-border
+           shadow-lg z-40 transform transition-transform duration-200;
+  }
+
+  .mobile-menu.closed {
+    @apply -translate-y-full opacity-0 pointer-events-none;
+  }
+
+  .mobile-menu.open {
+    @apply translate-y-0 opacity-100;
+  }
+
+  /* Reveal animation */
+  .reveal {
+    @apply opacity-0 translate-y-4 transition-all duration-500;
+  }
+
+  .reveal.show {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full hover:bg-muted-foreground/30;
 }
