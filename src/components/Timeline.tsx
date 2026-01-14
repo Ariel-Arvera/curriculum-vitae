@@ -1,6 +1,9 @@
 import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { timelineUpdates, allTags } from "@/data/cv";
-import { Search, ExternalLink } from "lucide-react";
+import { Search, ExternalLink, Filter, X, ChevronDown } from "lucide-react";
+import { SectionHeader } from "./ui/SectionHeader";
+import { MotionContainer, MotionItem } from "./ui/motion";
 
 export default function Timeline() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,101 +32,186 @@ export default function Timeline() {
 
   const displayedUpdates = showAll ? filteredUpdates : filteredUpdates.slice(0, 5);
 
+  const clearFilters = () => {
+    setSearchQuery("");
+    setSelectedTag("");
+  };
+
+  const hasFilters = searchQuery || selectedTag;
+
   return (
-    <section id="timeline" className="py-8">
+    <section id="timeline" className="section">
       <div className="container">
-        <div className="cv-card">
-          <h1 className="mb-2">Timeline</h1>
-          <p className="text-muted-foreground mb-4">
-            Regular updates on projects, learning, and milestones.
-          </p>
+        <SectionHeader
+          title="Timeline"
+          subtitle="Regular updates on projects, learning, and milestones"
+        />
 
-          {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-3 mb-4">
-            <div className="relative flex-1">
-              <Search
-                size={18}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-              />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search updates (e.g., API, React, Python)..."
-                className="cv-input pl-10"
-                aria-label="Search timeline"
-              />
-            </div>
-            <select
-              value={selectedTag}
-              onChange={(e) => setSelectedTag(e.target.value)}
-              className="cv-input sm:w-56"
-              aria-label="Filter by tag"
-            >
-              <option value="">All tags</option>
-              {allTags.map((tag) => (
-                <option key={tag} value={tag}>
-                  {tag}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <hr className="cv-hr" />
-
-          {/* Timeline items */}
-          <div className="space-y-3">
-            {displayedUpdates.map((update, i) => (
-              <div key={i} className="timeline-card">
-                <div className="flex items-start justify-between gap-4">
-                  <p className="timeline-title">{update.title}</p>
-                  <span className="timeline-date">{update.date}</span>
+        <MotionContainer className="max-w-4xl mx-auto">
+          <MotionItem>
+            <div className="card">
+              {/* Filters */}
+              <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                {/* Search */}
+                <div className="relative flex-1">
+                  <Search
+                    size={18}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+                  />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search updates..."
+                    className="input pl-12"
+                    aria-label="Search timeline"
+                  />
                 </div>
-                <p className="timeline-text">{update.description}</p>
-                <div className="flex flex-wrap items-center gap-2 mt-3">
-                  {update.tags.map((tag) => (
-                    <button
-                      key={tag}
-                      onClick={() => setSelectedTag(tag)}
-                      className="pill cursor-pointer hover:opacity-80 transition-opacity"
-                      title={`Filter by ${tag}`}
+
+                {/* Tag filter */}
+                <div className="relative sm:w-48">
+                  <Filter
+                    size={16}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"
+                  />
+                  <select
+                    value={selectedTag}
+                    onChange={(e) => setSelectedTag(e.target.value)}
+                    className="select pl-10"
+                    aria-label="Filter by tag"
+                  >
+                    <option value="">All tags</option>
+                    {allTags.map((tag) => (
+                      <option key={tag} value={tag}>
+                        {tag}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Clear filters */}
+                <AnimatePresence>
+                  {hasFilters && (
+                    <motion.button
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      onClick={clearFilters}
+                      className="btn-ghost sm:w-auto"
                     >
-                      {tag}
-                    </button>
+                      <X size={16} />
+                      Clear
+                    </motion.button>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <div className="divider" />
+
+              {/* Timeline items */}
+              <div className="space-y-4">
+                <AnimatePresence mode="popLayout">
+                  {displayedUpdates.map((update, i) => (
+                    <motion.div
+                      key={update.title}
+                      layout
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ delay: i * 0.05 }}
+                      className="timeline-card"
+                    >
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <h4 className="timeline-title">{update.title}</h4>
+                        <span className="timeline-date">{update.date}</span>
+                      </div>
+
+                      <p className="timeline-text">{update.description}</p>
+
+                      <div className="flex flex-wrap items-center justify-between gap-3 mt-4">
+                        <div className="flex flex-wrap gap-2">
+                          {update.tags.map((tag) => (
+                            <motion.button
+                              key={tag}
+                              onClick={() => setSelectedTag(tag)}
+                              className={`pill-interactive text-xs ${
+                                selectedTag === tag
+                                  ? "bg-primary/10 text-primary border-primary/30"
+                                  : ""
+                              }`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              {tag}
+                            </motion.button>
+                          ))}
+                        </div>
+
+                        {update.link && (
+                          <motion.a
+                            href={update.link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-primary hover:underline underline-offset-2 inline-flex items-center gap-1 font-medium"
+                            whileHover={{ x: 3 }}
+                          >
+                            {update.link.label}
+                            <ExternalLink size={14} />
+                          </motion.a>
+                        )}
+                      </div>
+                    </motion.div>
                   ))}
-                </div>
-                {update.link && (
-                  <div className="mt-3">
-                    <a
-                      href={update.link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-primary hover:underline inline-flex items-center gap-1"
-                    >
-                      {update.link.label}
-                      <ExternalLink size={12} />
-                    </a>
-                  </div>
+                </AnimatePresence>
+              </div>
+
+              {/* Empty state */}
+              {displayedUpdates.length === 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-12"
+                >
+                  <Search
+                    size={32}
+                    className="mx-auto text-muted-foreground mb-3"
+                  />
+                  <p className="text-muted-foreground mb-2">
+                    No updates found for your filters
+                  </p>
+                  <button
+                    onClick={clearFilters}
+                    className="text-primary hover:underline underline-offset-2 text-sm"
+                  >
+                    Clear filters
+                  </button>
+                </motion.div>
+              )}
+
+              {/* Footer */}
+              <div className="flex items-center justify-between gap-4 mt-6 pt-6 border-t border-border flex-wrap">
+                <p className="text-sm text-muted-foreground">
+                  Showing {displayedUpdates.length} of {filteredUpdates.length}{" "}
+                  update(s)
+                </p>
+                {filteredUpdates.length > 5 && (
+                  <motion.button
+                    onClick={() => setShowAll(!showAll)}
+                    className="btn-secondary text-sm"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {showAll ? "Show less" : "Load more"}
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform ${showAll ? "rotate-180" : ""}`}
+                    />
+                  </motion.button>
                 )}
               </div>
-            ))}
-          </div>
-
-          {/* Footer */}
-          <div className="flex items-center justify-between gap-4 mt-4 flex-wrap">
-            <p className="text-sm text-muted-foreground">
-              Showing {displayedUpdates.length} of {filteredUpdates.length} update(s).
-            </p>
-            {filteredUpdates.length > 5 && !showAll && (
-              <button
-                onClick={() => setShowAll(true)}
-                className="btn-secondary"
-              >
-                Load more
-              </button>
-            )}
-          </div>
-        </div>
+            </div>
+          </MotionItem>
+        </MotionContainer>
       </div>
     </section>
   );
