@@ -43,8 +43,8 @@ export default function Timeline() {
     <section id="timeline" className="section">
       <div className="container">
         <SectionHeader
-          title="Timeline"
-          subtitle="Regular updates on projects, learning, and milestones"
+          title="Cronología"
+          subtitle="Actualizaciones sobre proyectos, aprendizaje y otros."
         />
 
         <MotionContainer className="max-w-4xl mx-auto">
@@ -62,9 +62,9 @@ export default function Timeline() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search updates..."
+                    placeholder="Buscar en la cronología"
                     className="input pl-12"
-                    aria-label="Search timeline"
+                    aria-label="Buscar en la cronología"
                   />
                 </div>
 
@@ -80,7 +80,7 @@ export default function Timeline() {
                     className="select pl-10"
                     aria-label="Filter by tag"
                   >
-                    <option value="">All tags</option>
+                    <option value="">Todos</option>
                     {allTags.map((tag) => (
                       <option key={tag} value={tag}>
                         {tag}
@@ -100,7 +100,7 @@ export default function Timeline() {
                       className="btn-ghost sm:w-auto"
                     >
                       <X size={16} />
-                      Clear
+                      Limpiar filtros
                     </motion.button>
                   )}
                 </AnimatePresence>
@@ -134,11 +134,10 @@ export default function Timeline() {
                             <motion.button
                               key={tag}
                               onClick={() => setSelectedTag(tag)}
-                              className={`pill-interactive text-xs ${
-                                selectedTag === tag
-                                  ? "bg-primary/10 text-primary border-primary/30"
-                                  : ""
-                              }`}
+                              className={`pill-interactive text-xs ${selectedTag === tag
+                                ? "bg-primary/10 text-primary border-primary/30"
+                                : ""
+                                }`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                             >
@@ -177,13 +176,13 @@ export default function Timeline() {
                     className="mx-auto text-muted-foreground mb-3"
                   />
                   <p className="text-muted-foreground mb-2">
-                    No updates found for your filters
+                    No se encontraron actualizaciones con los filtros seleccionados.
                   </p>
                   <button
                     onClick={clearFilters}
                     className="text-primary hover:underline underline-offset-2 text-sm"
                   >
-                    Clear filters
+                    Limpiar filtros
                   </button>
                 </motion.div>
               )}
@@ -191,8 +190,8 @@ export default function Timeline() {
               {/* Footer */}
               <div className="flex items-center justify-between gap-4 mt-6 pt-6 border-t border-border flex-wrap">
                 <p className="text-sm text-muted-foreground">
-                  Showing {displayedUpdates.length} of {filteredUpdates.length}{" "}
-                  update(s)
+                  Mostrando {displayedUpdates.length} de {filteredUpdates.length}{" "}
+                  actualizaciones.
                 </p>
                 {filteredUpdates.length > 5 && (
                   <motion.button

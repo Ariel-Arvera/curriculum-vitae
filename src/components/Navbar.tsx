@@ -38,11 +38,10 @@ export default function Navbar({
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 h-[var(--nav-height)] transition-all duration-300 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 h-[var(--nav-height)] transition-all duration-300 ${scrolled
             ? "bg-[hsl(var(--nav-bg))] backdrop-blur-xl border-b border-[hsl(var(--nav-border))] shadow-sm"
             : "bg-transparent"
-        }`}
+          }`}
       >
         <div className="container h-full flex items-center justify-between">
           {/* Brand */}
@@ -180,9 +179,8 @@ export default function Navbar({
                     e.preventDefault();
                     handleNavClick(link.id);
                   }}
-                  className={`nav-link text-center py-3 ${
-                    activeSection === link.id ? "active" : ""
-                  }`}
+                  className={`nav-link text-center py-3 ${activeSection === link.id ? "active" : ""
+                    }`}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}

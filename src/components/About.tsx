@@ -28,8 +28,8 @@ export default function About({ onNavigate }: AboutProps) {
     <section id="about" className="section">
       <div className="container">
         <SectionHeader
-          title="About Me"
-          subtitle="A quick introduction to who I am and what I do"
+          title="Sobre Mí"
+          subtitle="Una breve introducción sobre quién soy y a qué me dedico."
         />
 
         <MotionContainer className="grid md:grid-cols-3 gap-8">
@@ -75,7 +75,7 @@ export default function About({ onNavigate }: AboutProps) {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  View Timeline
+                  Ver Actualizaciones
                   <ArrowRight size={16} />
                 </motion.button>
               </div>
@@ -86,22 +86,22 @@ export default function About({ onNavigate }: AboutProps) {
           <MotionItem className="md:col-span-2 space-y-6">
             {/* Bio Card */}
             <div className="card">
-              <h3 className="text-lg font-semibold mb-4">Background</h3>
-              <p className="text-foreground leading-relaxed text-lg">
+              <h3 className="text-lg font-semibold mb-4">Biografía</h3>
+              <p className="text-foreground leading-relaxed text-justify">
                 {aboutText}
               </p>
             </div>
 
             {/* Contact Info Card */}
             <div className="card">
-              <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
+              <h3 className="text-lg font-semibold mb-4">Información de contacto</h3>
               <div className="space-y-3">
                 {/* Email */}
                 <div className="chip w-full justify-between">
                   <div className="flex items-center gap-3">
                     <Mail size={18} className="text-primary" />
                     <div>
-                      <p className="text-xs text-muted-foreground">Email</p>
+                      <p className="text-xs text-muted-foreground">E-mail</p>
                       <a
                         href={`mailto:${personalInfo.email}`}
                         className="text-foreground hover:text-primary transition-colors"
@@ -150,7 +150,7 @@ export default function About({ onNavigate }: AboutProps) {
                       rel="noopener noreferrer"
                       className="text-primary hover:underline underline-offset-2"
                     >
-                      View Profile →
+                      {personalInfo.linkedinDisplay} →
                     </a>
                   </div>
                 </div>
@@ -159,6 +159,6 @@ export default function About({ onNavigate }: AboutProps) {
           </MotionItem>
         </MotionContainer>
       </div>
-    </section>
+    </section >
   );
 }

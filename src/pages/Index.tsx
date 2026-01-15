@@ -77,14 +77,14 @@ const Index = () => {
         isDark={isDark}
         onToggleTheme={toggleTheme}
       />
-      
+
       <main>
         <Hero onNavigate={handleNavigate} />
         <About onNavigate={handleNavigate} />
         <Experience />
         <Education />
         <Skills />
-        <Timeline />
+        {/* <Timeline /> */}
         <Contact />
       </main>
 

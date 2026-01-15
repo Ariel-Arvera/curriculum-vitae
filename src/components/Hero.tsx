@@ -23,7 +23,11 @@ export default function Hero({ onNavigate }: HeroProps) {
       className="min-h-screen pt-[var(--nav-height)] flex items-center"
     >
       <div className="container py-12 md:py-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center "> */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center backdrop-blur-md bg-gray-500/5 rounded-2xl p-8 ">
+
+
+
           {/* Left - Content */}
           <MotionContainer className="space-y-8">
             {/* Availability badge */}
@@ -43,8 +47,9 @@ export default function Hero({ onNavigate }: HeroProps) {
             {/* Main heading */}
             <MotionItem>
               <h1 className="text-foreground">
-                Hi, I'm{" "}
-                <span className="gradient-text">{personalInfo.name.split(" ")[0]}</span>
+                {/* Hi, I'm{" "} */}
+                Hola! Soy{" "}
+                <span className="bg-gradient-to-r from-[#005DDE] to-[#00DEBA] bg-clip-text text-transparent">{personalInfo.name.split(" ")[0]}</span>
                 <span className="text-muted-foreground">.</span>
               </h1>
             </MotionItem>
@@ -52,7 +57,9 @@ export default function Hero({ onNavigate }: HeroProps) {
             {/* Subtitle */}
             <MotionItem>
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl">
-                {personalInfo.title} student based in {personalInfo.location}.{" "}
+                {personalInfo.title} <br />
+                {personalInfo.location}.{" "}
+                <br />
                 <span className="text-foreground font-medium">
                   {personalInfo.tagline}
                 </span>
@@ -80,7 +87,7 @@ export default function Hero({ onNavigate }: HeroProps) {
                 </a>
                 <span className="chip">
                   <MapPin size={16} className="text-muted-foreground" />
-                  <span className="text-muted-foreground">{personalInfo.location}, UK</span>
+                  <span className="text-muted-foreground">{personalInfo.location}</span>
                 </span>
               </div>
             </MotionItem>
@@ -94,7 +101,7 @@ export default function Hero({ onNavigate }: HeroProps) {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Get in touch
+                  Contáctame!
                   <ArrowRight size={18} />
                 </motion.button>
                 <motion.a
@@ -137,8 +144,9 @@ export default function Hero({ onNavigate }: HeroProps) {
                 />
               </a>
               {/* Decorative elements */}
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-primary/10 -z-10 blur-2xl" />
-              <div className="absolute -top-4 -left-4 w-32 h-32 rounded-full bg-accent/10 -z-10 blur-2xl" />
+              {/* <div className="absolute -top-4 -left-4 w-32 h-32 rounded-full bg-accent/10 -z-10 blur-2xl" /> */}
+              {/* <div className="absolute -bottom-4 -right-4 w-64 h-64 rounded-full bg-primary/10 -z-10 blur-2xl" /> */}
+              <div className="absolute -bottom-4 -right-4 w-80 h-80 rounded-full bg-primary/10 -z-10 blur-3xl" />
             </motion.div>
 
             {/* Quick explore cards */}
@@ -148,10 +156,10 @@ export default function Hero({ onNavigate }: HeroProps) {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="card"
             >
-              <div className="flex items-center gap-2 mb-4">
+              {/* <div className="flex items-center gap-2 mb-4">
                 <Sparkles size={18} className="text-primary" />
-                <h3 className="text-lg font-semibold">Explore</h3>
-              </div>
+                <h3 className="text-lg font-semibold">Explorar</h3>
+              </div> */}
               <div className="grid grid-cols-2 gap-3">
                 {sections.slice(0, 4).map((section, index) => (
                   <motion.a
@@ -189,7 +197,8 @@ export default function Hero({ onNavigate }: HeroProps) {
           className="mt-16 md:mt-24"
         >
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-semibold">Latest Updates</h3>
+            {/* <h3 className="text-xl font-semibold">Últimas Actualizaciones</h3> */}
+            <h3 className="text-2xl font-bold">Últimas Actualizaciones</h3>
             <motion.a
               href="#timeline"
               onClick={(e) => {
@@ -199,7 +208,7 @@ export default function Hero({ onNavigate }: HeroProps) {
               className="text-sm text-primary font-medium hover:underline underline-offset-4 inline-flex items-center gap-1"
               whileHover={{ x: 5 }}
             >
-              View all
+              Ver todo
               <ArrowRight size={14} />
             </motion.a>
           </div>
@@ -231,6 +240,6 @@ export default function Hero({ onNavigate }: HeroProps) {
           </div>
         </motion.div>
       </div>
-    </section>
+    </section >
   );
 }

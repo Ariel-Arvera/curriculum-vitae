@@ -15,12 +15,12 @@
     --primary: 220 70% 50%;
     --primary-hover: 220 70% 45%;
     --primary-foreground: 0 0% 100%;
-    
+
     /* Accent - Warm Coral */
     --accent: 12 80% 60%;
     --accent-light: 12 80% 95%;
     --accent-foreground: 0 0% 100%;
-    
+
     /* Background - Clean Warm White */
     --background: 40 20% 98%;
     --foreground: 220 25% 15%;
@@ -96,12 +96,12 @@
     --primary: 220 80% 65%;
     --primary-hover: 220 80% 70%;
     --primary-foreground: 220 25% 10%;
-    
+
     /* Accent - Soft Coral */
     --accent: 12 75% 65%;
     --accent-light: 12 50% 15%;
     --accent-foreground: 0 0% 100%;
-    
+
     /* Background - Deep charcoal */
     --background: 225 25% 8%;
     --foreground: 220 20% 95%;
@@ -205,6 +205,7 @@
 }
 
 @layer components {
+
   /* Container */
   .container {
     @apply px-4 sm:px-6;
@@ -220,12 +221,20 @@
   }
 
   .section-title {
-    @apply text-2xl md:text-3xl font-bold mb-3;
+    @apply text-3xl md:text-4xl font-bold tracking-tight mb-4;
   }
 
   .section-subtitle {
-    @apply text-muted-foreground text-lg max-w-2xl;
+    @apply text-lg md:text-xl text-muted-foreground max-w-2xl;
   }
+
+
+
+
+
+
+
+
 
   /* Card variants */
   .card {
@@ -256,44 +265,28 @@
 
   /* Buttons */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 font-medium text-sm
-           transition-all duration-200 ease-out
-           focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
-           disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center gap-2 font-medium text-sm transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
   }
 
   .btn-primary {
-    @apply btn px-6 py-3 rounded-xl
-           bg-primary text-primary-foreground
-           hover:bg-[hsl(var(--primary-hover))] hover:shadow-lg hover:shadow-primary/25
-           active:scale-[0.98];
+    @apply btn px-6 py-3 rounded-xl bg-primary text-primary-foreground hover:bg-[hsl(var(--primary-hover))] hover:shadow-lg hover:shadow-primary/25 active:scale-[0.98];
   }
 
   .btn-secondary {
-    @apply btn px-6 py-3 rounded-xl
-           bg-secondary text-secondary-foreground border border-border
-           hover:bg-muted hover:border-muted-foreground/20
-           active:scale-[0.98];
+    @apply btn px-6 py-3 rounded-xl bg-secondary text-secondary-foreground border border-border hover:bg-muted hover:border-muted-foreground/20 active:scale-[0.98];
   }
 
   .btn-ghost {
-    @apply btn px-4 py-2 rounded-lg
-           text-muted-foreground
-           hover:bg-muted hover:text-foreground;
+    @apply btn px-4 py-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground;
   }
 
   .btn-icon {
-    @apply btn w-10 h-10 rounded-xl p-0
-           text-muted-foreground hover:text-foreground
-           hover:bg-muted;
+    @apply btn w-10 h-10 rounded-xl p-0 text-muted-foreground hover:text-foreground hover:bg-muted;
   }
 
   /* Pills / Tags */
   .pill {
-    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium
-           bg-[hsl(var(--pill-bg))] text-[hsl(var(--pill-text))]
-           border border-[hsl(var(--pill-border))]
-           transition-all duration-200;
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-[hsl(var(--pill-bg))] text-[hsl(var(--pill-text))] border border-[hsl(var(--pill-border))] transition-all duration-200;
   }
 
   .pill-interactive {
@@ -302,9 +295,7 @@
 
   /* Chip (contact details) */
   .chip {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm
-           bg-secondary border border-border
-           transition-all duration-200;
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm bg-secondary border border-border transition-all duration-200;
   }
 
   .chip a {
@@ -312,17 +303,12 @@
   }
 
   .chip .copy-btn {
-    @apply inline-flex items-center gap-1 px-2 py-1 text-xs rounded-lg
-           bg-muted hover:bg-primary/10 
-           text-muted-foreground hover:text-primary 
-           transition-colors cursor-pointer;
+    @apply inline-flex items-center gap-1 px-2 py-1 text-xs rounded-lg bg-muted hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors cursor-pointer;
   }
 
   /* Badge */
   .badge {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider
-           bg-[hsl(var(--success-bg))] text-[hsl(var(--success))]
-           border border-[hsl(var(--success)/0.2)];
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-[hsl(var(--success-bg))] text-[hsl(var(--success))] border border-[hsl(var(--success)/0.2)];
   }
 
   .badge-primary {
@@ -331,10 +317,7 @@
 
   /* Topic/Section cards */
   .topic-card {
-    @apply block p-5 rounded-xl border border-border bg-card
-           transition-all duration-300 ease-out
-           hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1
-           focus:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+    @apply block p-5 rounded-xl border border-border bg-card transition-all duration-300 ease-out hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring;
   }
 
   .topic-card-title {
@@ -347,9 +330,7 @@
 
   /* Timeline cards */
   .timeline-card {
-    @apply p-5 rounded-xl border border-border bg-card
-           transition-all duration-300
-           hover:border-primary/20 hover:shadow-md;
+    @apply p-5 rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/20 hover:shadow-md;
   }
 
   .timeline-title {
@@ -371,8 +352,7 @@
 
   .experience-card::before {
     content: '';
-    @apply absolute left-0 top-0 w-4 h-4 rounded-full bg-primary -translate-x-[9px]
-           ring-4 ring-background;
+    @apply absolute left-0 top-0 w-4 h-4 rounded-full bg-primary -translate-x-[9px] ring-4 ring-background;
   }
 
   .experience-card:last-child::before {
@@ -381,24 +361,17 @@
 
   /* Input */
   .input {
-    @apply w-full px-4 py-3 rounded-xl border border-input bg-background
-           text-foreground placeholder:text-muted-foreground
-           transition-all duration-200
-           focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary;
+    @apply w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary;
   }
 
   /* Select */
   .select {
-    @apply input appearance-none cursor-pointer
-           bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')]
-           bg-no-repeat bg-[right_1rem_center] bg-[length:1rem];
+    @apply input appearance-none cursor-pointer bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_1rem_center] bg-[length:1rem];
   }
 
   /* Nav link */
   .nav-link {
-    @apply relative px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground
-           transition-all duration-200
-           hover:text-foreground hover:bg-muted;
+    @apply relative px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground transition-all duration-200 hover:text-foreground hover:bg-muted;
   }
 
   .nav-link.active {
@@ -412,17 +385,12 @@
 
   /* Profile image */
   .profile-img {
-    @apply w-28 h-28 md:w-36 md:h-36 rounded-2xl object-cover
-           ring-4 ring-primary/10 hover:ring-primary/30
-           transition-all duration-300 cursor-pointer
-           hover:scale-105;
+    @apply w-28 h-28 md:w-36 md:h-36 rounded-2xl object-cover ring-4 ring-primary/10 hover:ring-primary/30 transition-all duration-300 cursor-pointer hover:scale-105;
   }
 
   /* Mobile menu */
   .mobile-menu {
-    @apply fixed inset-x-0 top-[var(--nav-height)] bg-card/95 backdrop-blur-lg
-           border-b border-border shadow-xl z-40
-           transform transition-all duration-300 ease-out;
+    @apply fixed inset-x-0 top-[var(--nav-height)] bg-card/95 backdrop-blur-lg border-b border-border shadow-xl z-40 transform transition-all duration-300 ease-out;
   }
 
   .mobile-menu.closed {
@@ -453,10 +421,7 @@
 
   /* Skill pill */
   .skill-pill {
-    @apply inline-flex items-center px-4 py-2 rounded-xl text-sm font-medium
-           bg-secondary text-secondary-foreground border border-border
-           transition-all duration-200
-           hover:border-primary/30 hover:bg-primary/5 hover:text-primary;
+    @apply inline-flex items-center px-4 py-2 rounded-xl text-sm font-medium bg-secondary text-secondary-foreground border border-border transition-all duration-200 hover:border-primary/30 hover:bg-primary/5 hover:text-primary;
   }
 
   /* Link with underline animation */
@@ -466,8 +431,7 @@
 
   .link-animated::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary
-           origin-right scale-x-0 transition-transform duration-300;
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary origin-right scale-x-0 transition-transform duration-300;
   }
 
   .link-animated:hover::after {

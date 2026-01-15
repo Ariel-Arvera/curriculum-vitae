@@ -9,8 +9,8 @@ export default function Education() {
     <section id="education" className="section">
       <div className="container">
         <SectionHeader
-          title="Education"
-          subtitle="My academic background and qualifications"
+          title="Educación "
+          subtitle="Mi formación académica y titulaciones"
         />
 
         <MotionContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
