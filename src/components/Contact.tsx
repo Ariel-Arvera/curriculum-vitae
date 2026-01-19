@@ -154,8 +154,7 @@ export default function Contact() {
               >
                 <h3 className="text-xl font-semibold mb-4">Contáctame!</h3>
                 <p className="text-muted-foreground mb-8 leading-relaxed">
-                  {/* Envíame un WhatsApp para una respuesta más rápida — suelo responder antes de que termine un SELECT * FROM... */}
-                  Tiempo de respuesta menor que un npm install...
+                  Tiempo de respuesta menor que un <span className="italic">npm run deploy</span>...
                 </p>
 
                 <div className="space-y-4">

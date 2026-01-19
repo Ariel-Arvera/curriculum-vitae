@@ -7,9 +7,10 @@ export const personalInfo = {
   phone: "+34 695 298 272",
   linkedin: "https://www.linkedin.com/in/ariel-vera-94ab26137/",
   linkedinDisplay: "linkedin.com/in/ariel-vera",
-  cvUrl: "/Ariel-Vera-CV.pdf",
-  profileImage: "/profile-placeholder.jpg",
-  availability: "Disponible para Ofertas Laborales",
+  cvUrl: "/curriculum-vitae//Ariel-Vera-CV.pdf",
+  // profileImage: "/profile-placeholder.jpg",
+  profileImage: "/curriculum-vitae/profile-placeholder.jpg",
+  availability: "Abierto a propuestas",
 };
 
 export const aboutText = `Desarrollador Web con 3 años de experiencia en JavaScript, TypeScript, React y Tailwind CSS, con conocimientos básicos de backend usando ASP.NET, C# y SQL. Destaco por mi capacidad resolutiva y proactividad. Aprender nuevas tecnologías no representa un desafío al asumir proyectos. Mi experiencia previa en infraestructura y redes corporativas me brinda una visión integral de los entornos tecnológicos y su integración.`;
