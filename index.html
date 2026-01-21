@@ -7,8 +7,26 @@
   <title>Ariel Vera | Frontend Developer</title>
   <meta name="description" content="Portfolio de Ariel Vera - Desarrollador Frontend" />
   <meta name="author" content="Ariel Vera" />
-  <script type="module" crossorigin src="/curriculum-vitae/assets/index-DuNjmPiT.js"></script>
-  <link rel="stylesheet" crossorigin href="/curriculum-vitae/assets/index-Bow6ehnV.css">
+    
+    <script>
+      // Redirigir al inicio (#home) al refrescar
+      if (window.location.hash && window.location.hash !== '#home') {
+        // Si hay hash y no es #home, redirigir a #home
+        window.location.hash = 'home';
+      }
+      
+      // También manejar cuando se carga la página
+      window.addEventListener('load', function() {
+        if (window.location.hash && window.location.hash !== '#home') {
+          window.location.hash = 'home';
+        }
+      });
+    </script>
+
+
+
+  <script type="module" crossorigin src="/curriculum-vitae/assets/index-P3buBpti.js"></script>
+  <link rel="stylesheet" crossorigin href="/curriculum-vitae/assets/index-bx2TMnkW.css">
 </head>
 
 <body>
